@@ -84,11 +84,6 @@ namespace crud_sqlite
 
 
 
-
-
-
-
-
     internal class Funcionarios
     {      
         private int id { get; set; }
