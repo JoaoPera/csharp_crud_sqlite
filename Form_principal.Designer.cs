@@ -125,6 +125,7 @@
             this.button_clientes.TabIndex = 0;
             this.button_clientes.Text = "Clientes";
             this.button_clientes.UseVisualStyleBackColor = true;
+            this.button_clientes.Click += new System.EventHandler(this.button_clientes_Click);
             // 
             // panel_sidebar
             // 

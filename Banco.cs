@@ -66,6 +66,7 @@ namespace crud_sqlite
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.Message);
                 throw e;
             }
             return dt;
@@ -289,10 +290,12 @@ namespace crud_sqlite
 
     public class Clientes
     {
-        private int id { get; set; }
-        private string nome { get; set; }
-        private string telefone { get; set; }
-        private string endereco { get; set; }
+        public int id { get; set; }
+        public string nome { get; set; }
+        public string telefone { get; set; }
+        public string endereco { get; set; }
+
+        public int row_count = 0;
 
         public Clientes(int id, string nome, string telefone, string endereco)
         {
@@ -302,15 +305,15 @@ namespace crud_sqlite
             this.endereco = endereco;
         }
 
-        public void insert()
+        public static void insert(string novo_nome, string novo_telefone, string novo_endereco)
         {
-            string consulta = $"INSERT INTO CLIENTES (cliente_nome, cliente_telefone, cliente_endereco) VALUES (\"{this.nome}\", \"{this.telefone}\", \"{this.endereco}\");";
+            string consulta = $"INSERT INTO CLIENTES (cliente_nome, cliente_telefone, cliente_endereco) VALUES (\"{novo_nome}\", \"{novo_telefone}\", \"{novo_endereco}\");";
             Banco.query_sem_retorno(consulta);
         }
 
-        public void update()
+        public void update(string novo_nome, string novo_telefone, string novo_endereco)
         {
-            string consulta = $"UPDATE CLIENTES SET cliente_nome = \"{this.nome}\", cliente_telefone = \"{this.telefone}\", cliente_endereco = \"{this.endereco}\") WHERE cliente_id = {this.id};";
+            string consulta = $"UPDATE CLIENTES SET cliente_nome = \"{novo_nome}\", cliente_telefone = \"{novo_telefone}\", cliente_endereco = \"{novo_endereco}\" WHERE cliente_id = {this.id};";
             Banco.query_sem_retorno(consulta);
         }
 
@@ -326,11 +329,105 @@ namespace crud_sqlite
             return Banco.consultar(consulta);
         }
 
-        public DataTable fetch_all(int pk)
+        public static DataTable fetch_all(int limit, int offset)
         {
-            string consulta = $"SELECT * FROM CLIENTES;";
+            string consulta = $"SELECT * FROM CLIENTES LIMIT {limit} offset {offset} ;";
             return Banco.consultar(consulta);
         }
+
+        public static int contar_rows()
+        {
+            string consulta = $"SELECT Count(*) as row_count FROM CLIENTES;";
+            DataTable dt = Banco.consultar(consulta);
+            if (dt.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dt.Rows[0]["row_count"]);
+            }
+            return 0;
+        }
+
+        public static int contar_rows_pesquisa(string _nome, string _telefone, string _endereco) {
+            string consulta = "SELECT COUNT(*) as row_count FROM CLIENTES";
+            List<string> likes_list = new List<string>();
+            string like_nome = string.Empty;
+            string like_telefone = string.Empty;
+            string like_endereco = string.Empty;
+            DataTable dt = null;
+
+            if (_nome.Length > 0)
+            {
+                like_nome = $" cliente_nome like \'%{_nome}%\' ";
+                likes_list.Add(like_nome);
+            }
+
+            if (_telefone.Length > 0)
+            {
+                like_telefone = $" cliente_telefone like \'%{_telefone}%\' ";
+                likes_list.Add(like_telefone);
+            }
+
+            if (_endereco.Length > 0)
+            {
+                like_endereco = $" cliente_endereco like \'%{_endereco}%\' ";
+                likes_list.Add(like_endereco);
+            }
+
+            if (likes_list.Count > 0)
+            {
+                string firstElement = likes_list[0];
+                consulta += " WHERE " + likes_list[0];
+                likes_list.RemoveAt(0);
+                while (likes_list.Count > 0)
+                {
+                    consulta += " AND " + likes_list[0];
+                    likes_list.RemoveAt(0);
+                }
+            }
+
+            dt = Banco.consultar(consulta);
+            return Convert.ToInt32(dt.Rows[0]["row_count"]);
+        }
+
+
+        public static DataTable filtrar(string _nome, string _telefone, string _endereco){
+            string consulta = "SELECT * FROM CLIENTES";
+            List<string> likes_list = new List<string>();
+            string like_nome = string.Empty;
+            string like_telefone = string.Empty;
+            string like_endereco = string.Empty;
+
+            if (_nome.Length > 0)
+            {
+                like_nome = $" cliente_nome like \'%{_nome}%\' ";
+                likes_list.Add(like_nome);
+            }
+
+            if (_telefone.Length > 0)
+            {
+                like_telefone = $" cliente_telefone like \'%{_telefone}%\' ";
+                likes_list.Add(like_telefone);
+            }
+
+            if (_endereco.Length > 0)
+            {
+                like_endereco = $" cliente_endereco like \'%{_endereco}%\' ";
+                likes_list.Add(like_endereco);
+            }
+
+            if (likes_list.Count > 0)
+            {
+                string firstElement = likes_list[0];
+                consulta += " WHERE " + likes_list[0];
+                likes_list.RemoveAt(0);
+                while (likes_list.Count > 0)
+                {
+                    consulta += " AND " + likes_list[0];
+                    likes_list.RemoveAt(0);
+                }                
+            }
+            return Banco.consultar(consulta);
+        }
+
     }
 
     public class Pagamentos

@@ -30,10 +30,12 @@ namespace crud_sqlite
         {
             InitializeComponent();
             this.form_principal     = fp;
+            form_principal.Visible = false;
+
+
             funcionario_da_sessao   = fp.funcionario_da_sessao;
             button_gravar.Visible   = false;
             button_cancelar.Visible = false;
-            form_principal.Visible  = false;
             button_editar.Visible   = false;
             button_excluir.Visible  = false;
             textBox_nome.ReadOnly   = true;
