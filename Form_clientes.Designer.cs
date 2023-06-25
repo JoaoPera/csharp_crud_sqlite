@@ -88,7 +88,7 @@
             this.bt_excluir.Location = new System.Drawing.Point(184, 272);
             this.bt_excluir.Name = "bt_excluir";
             this.bt_excluir.Size = new System.Drawing.Size(80, 48);
-            this.bt_excluir.TabIndex = 10;
+            this.bt_excluir.TabIndex = 12;
             this.bt_excluir.Text = "Excluir Cliente";
             this.bt_excluir.UseVisualStyleBackColor = true;
             this.bt_excluir.Click += new System.EventHandler(this.bt_excluir_Click);
@@ -98,7 +98,7 @@
             this.bt_editar.Location = new System.Drawing.Point(98, 272);
             this.bt_editar.Name = "bt_editar";
             this.bt_editar.Size = new System.Drawing.Size(80, 48);
-            this.bt_editar.TabIndex = 9;
+            this.bt_editar.TabIndex = 11;
             this.bt_editar.Text = "Editar Cliente";
             this.bt_editar.UseVisualStyleBackColor = true;
             this.bt_editar.Click += new System.EventHandler(this.bt_editar_Click);
@@ -108,7 +108,7 @@
             this.bt_novo.Location = new System.Drawing.Point(12, 272);
             this.bt_novo.Name = "bt_novo";
             this.bt_novo.Size = new System.Drawing.Size(80, 48);
-            this.bt_novo.TabIndex = 8;
+            this.bt_novo.TabIndex = 5;
             this.bt_novo.Text = "Novo Cliente";
             this.bt_novo.UseVisualStyleBackColor = true;
             this.bt_novo.Click += new System.EventHandler(this.bt_novo_Click);
@@ -118,7 +118,7 @@
             this.bt_cancelar.Location = new System.Drawing.Point(143, 199);
             this.bt_cancelar.Name = "bt_cancelar";
             this.bt_cancelar.Size = new System.Drawing.Size(125, 32);
-            this.bt_cancelar.TabIndex = 7;
+            this.bt_cancelar.TabIndex = 10;
             this.bt_cancelar.Text = "Cancelar";
             this.bt_cancelar.UseVisualStyleBackColor = true;
             this.bt_cancelar.Click += new System.EventHandler(this.bt_cancelar_Click);
@@ -128,7 +128,7 @@
             this.bt_gravar.Location = new System.Drawing.Point(12, 199);
             this.bt_gravar.Name = "bt_gravar";
             this.bt_gravar.Size = new System.Drawing.Size(125, 32);
-            this.bt_gravar.TabIndex = 6;
+            this.bt_gravar.TabIndex = 9;
             this.bt_gravar.Text = "Gravar";
             this.bt_gravar.UseVisualStyleBackColor = true;
             this.bt_gravar.Click += new System.EventHandler(this.bt_gravar_Click);
@@ -138,21 +138,21 @@
             this.textBox_endereco.Location = new System.Drawing.Point(12, 150);
             this.textBox_endereco.Name = "textBox_endereco";
             this.textBox_endereco.Size = new System.Drawing.Size(256, 22);
-            this.textBox_endereco.TabIndex = 5;
+            this.textBox_endereco.TabIndex = 8;
             // 
             // textBox_telefone
             // 
             this.textBox_telefone.Location = new System.Drawing.Point(15, 85);
             this.textBox_telefone.Name = "textBox_telefone";
             this.textBox_telefone.Size = new System.Drawing.Size(256, 22);
-            this.textBox_telefone.TabIndex = 4;
+            this.textBox_telefone.TabIndex = 7;
             // 
             // textBox_nome
             // 
             this.textBox_nome.Location = new System.Drawing.Point(15, 28);
             this.textBox_nome.Name = "textBox_nome";
             this.textBox_nome.Size = new System.Drawing.Size(256, 22);
-            this.textBox_nome.TabIndex = 3;
+            this.textBox_nome.TabIndex = 6;
             // 
             // label_endereco
             // 
@@ -238,7 +238,7 @@
             this.bt_pesquisar.Location = new System.Drawing.Point(926, 0);
             this.bt_pesquisar.Name = "bt_pesquisar";
             this.bt_pesquisar.Size = new System.Drawing.Size(120, 41);
-            this.bt_pesquisar.TabIndex = 12;
+            this.bt_pesquisar.TabIndex = 4;
             this.bt_pesquisar.Text = "Pesquisar";
             this.bt_pesquisar.UseVisualStyleBackColor = true;
             this.bt_pesquisar.Click += new System.EventHandler(this.button1_Click);
@@ -248,7 +248,7 @@
             this.textBox_pq_endereco.Location = new System.Drawing.Point(675, 9);
             this.textBox_pq_endereco.Name = "textBox_pq_endereco";
             this.textBox_pq_endereco.Size = new System.Drawing.Size(236, 22);
-            this.textBox_pq_endereco.TabIndex = 11;
+            this.textBox_pq_endereco.TabIndex = 3;
             this.textBox_pq_endereco.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_pq_endereco_KeyDown);
             // 
             // textBox_pq_telefone
@@ -256,7 +256,7 @@
             this.textBox_pq_telefone.Location = new System.Drawing.Point(465, 10);
             this.textBox_pq_telefone.Name = "textBox_pq_telefone";
             this.textBox_pq_telefone.Size = new System.Drawing.Size(132, 22);
-            this.textBox_pq_telefone.TabIndex = 11;
+            this.textBox_pq_telefone.TabIndex = 2;
             this.textBox_pq_telefone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_pq_telefone_KeyDown);
             // 
             // textBox_pq_nome
@@ -264,7 +264,7 @@
             this.textBox_pq_nome.Location = new System.Drawing.Point(176, 10);
             this.textBox_pq_nome.Name = "textBox_pq_nome";
             this.textBox_pq_nome.Size = new System.Drawing.Size(216, 22);
-            this.textBox_pq_nome.TabIndex = 11;
+            this.textBox_pq_nome.TabIndex = 1;
             this.textBox_pq_nome.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_pq_nome_KeyDown);
             // 
             // label_pq_endereco
@@ -299,7 +299,7 @@
             this.bt_atualizar_tabela.Location = new System.Drawing.Point(0, 1);
             this.bt_atualizar_tabela.Name = "bt_atualizar_tabela";
             this.bt_atualizar_tabela.Size = new System.Drawing.Size(120, 40);
-            this.bt_atualizar_tabela.TabIndex = 0;
+            this.bt_atualizar_tabela.TabIndex = 13;
             this.bt_atualizar_tabela.Text = "Atualizar tabela";
             this.bt_atualizar_tabela.UseVisualStyleBackColor = true;
             this.bt_atualizar_tabela.Click += new System.EventHandler(this.bt_atualizar_tabela_Click);
