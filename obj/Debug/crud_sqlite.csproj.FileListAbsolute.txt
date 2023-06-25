@@ -19,3 +19,4 @@ C:\Users\Pereira\Desktop\C#\crudSQLite\crud_sqlite\obj\Debug\crud_sqlite.csproj.
 C:\Users\Pereira\Desktop\C#\crudSQLite\crud_sqlite\obj\Debug\crud_sqlite.exe
 C:\Users\Pereira\Desktop\C#\crudSQLite\crud_sqlite\obj\Debug\crud_sqlite.pdb
 C:\Users\Pereira\Desktop\C#\crudSQLite\crud_sqlite\obj\Debug\crud_sqlite.Form_principal.resources
+C:\Users\Pereira\Desktop\C#\crudSQLite\crud_sqlite\obj\Debug\crud_sqlite.Form_funcionarios.resources

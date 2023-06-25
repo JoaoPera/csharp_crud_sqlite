@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SQLite;
 
 namespace crud_sqlite
 {
     public partial class Form1 : Form
     {
 
-        private Funcionarios func = null;
+        public Funcionarios func;
         public Form1()
         {
             InitializeComponent();
@@ -81,17 +83,18 @@ namespace crud_sqlite
             string senha = input_senha.Text;
             try
             {
-                func = Funcionarios.logar(login, senha);
+                func = Funcionarios.logar(login, senha);                
                 label_login_response.Text = $"Bem vindo, {func.nome}! Entrando...";
+                label_login_response.Refresh();
                 Thread.Sleep(800);
                 Form_principal form_Principal = new Form_principal(this);
-                //this.Visible = false;
                 form_Principal.ShowDialog();
 
             }
             catch (Exception ex)
             {
                 label_login_response.Text = "";
+                label_login_response.Refresh();
                 Thread.Sleep(80);
                 label_login_response.Text = ex.Message;
             }
@@ -104,6 +107,16 @@ namespace crud_sqlite
             input_senha.Clear();
             input_login.Focus();
             label_login_response.Text = "";
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

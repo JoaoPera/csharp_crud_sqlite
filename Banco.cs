@@ -7,32 +7,41 @@ using System.Data;
 using System.Data.SQLite;
 using System.Windows.Forms;
 using System.Security.Permissions;
+using System.IO;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace crud_sqlite
 {
     internal class Banco
+
     {
-        private static string path = @"Data Source=C:\Users\Pereira\Desktop\C#\crudSQLite\crud_sqlite\db\db.db";
-        public static SQLiteConnection conexao = new SQLiteConnection(path);
+        private static string path = "Data Source=" + Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\db\db.db"));
+        
+        private static SQLiteConnection conexao = new SQLiteConnection(path);
 
         public static SQLiteConnection conectar()
         {            
             if ((conexao.State != ConnectionState.Open))
             {
-                if (conexao.State != ConnectionState.Closed)
-                {
-                    try
-                    {
-                        conexao.Close();
-                    }
-                    catch (Exception)
-                    {
-                        throw;
-                    }
-                }
                 try
                 {
                     conexao.Open();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return conexao;
+        }
+
+        public static SQLiteConnection desconectar()
+        {
+            if ((conexao.State != ConnectionState.Closed))
+            {
+                try
+                {
+                    conexao.Close();
                 }
                 catch (Exception)
                 {
@@ -84,12 +93,12 @@ namespace crud_sqlite
 
 
 
-    internal class Funcionarios
+    public class Funcionarios
     {      
-        private int id { get; set; }
+        public int id { get; set; }
         public string nome { get; set; }
-        private string login { get; set; }
-        private string senha { get; set; }
+        public string login { get; set; }
+        public string senha { get; set; }
 
         public Funcionarios(int id, string nome, string login, string senha)
         {
@@ -97,6 +106,16 @@ namespace crud_sqlite
             this.nome = nome;
             this.login = login;
             this.senha = senha;
+        }
+
+        public static Funcionarios construtor_from_row(DataRow row) {
+            
+            int c_id = Convert.ToInt32(row["funcionario_id"]);
+            string c_nome  = row["funcionario_nome"].ToString();
+            string c_login = row["funcionario_login"].ToString();
+            string c_senha = row["funcionario_senha"].ToString();
+            Funcionarios func = new Funcionarios(c_id, c_nome, c_login, c_senha);
+            return func;
         }
 
         public static Funcionarios logar(string input_login, string input_senha)
@@ -141,24 +160,32 @@ namespace crud_sqlite
             }
             catch (Exception er)
             {
-                throw;
+                throw er;
             }
 
         }
-        public void update(string nova_nome, string novo_login)
+
+        public static void insert(string nome, string login, string senha)
+        {
+            string consulta = $"INSERT INTO FUNCIONARIOS (funcionario_nome, funcionario_login, funcionario_senha) VALUES (\"{nome}\", \"{login}\", \"{senha}\");";
+            Banco.query_sem_retorno(consulta);
+        }
+        public void update(string novo_nome, string novo_login, string nova_senha)
         {
             try
             {
-                string consulta = $"UPDATE FUNCIONARIOS SET funcionario_nome = \"{nova_nome}\" AND \"funcionario_login\" = {novo_login} WHERE funcionario_id = {this.id}";
+                string consulta = $"UPDATE FUNCIONARIOS SET funcionario_nome = \'{novo_nome}\' , funcionario_login = \'{novo_login}\' , funcionario_senha =  \'{nova_senha}\' WHERE funcionario_id = {this.id}";
+                MessageBox.Show(consulta);
                 Banco.query_sem_retorno(consulta);
             }
             catch (Exception er)
             {
+                MessageBox.Show(er.Message);
                 throw er;
             }
         }
 
-        public void delete(string nova_nome, string novo_login)
+        public void delete()
         {
             try
             {
@@ -170,9 +197,51 @@ namespace crud_sqlite
                 throw er;
             }
         }
+
+        public DataTable fetch(int pk)
+        {
+            string consulta = $"SELECT * FROM FUNCIONARIOS WHERE funcionario_id = {pk};";
+            return Banco.consultar(consulta);
+        }
+
+        public static Funcionarios fetch_this(int pk)
+        {
+            string consulta = $"SELECT * FROM FUNCIONARIOS WHERE funcionario_id = {pk};";
+            Exception erro;
+            Funcionarios func;
+            try
+            {
+                DataTable dt = Banco.consultar(consulta);
+                if (dt.Rows.Count > 0)
+                {
+                    int c_id = Convert.ToInt32(dt.Rows[0]["funcionario_id"]);
+                    string c_nome = dt.Rows[0]["funcionario_nome"].ToString();
+                    string c_login = dt.Rows[0]["funcionario_login"].ToString();
+                    string c_senha = dt.Rows[0]["funcionario_senha"].ToString();
+                    func = new Funcionarios(c_id, c_nome, c_login, c_senha);
+                }
+                else
+                {
+                    erro = new Exception("O login ou a senha estão errados!");
+                    throw erro;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }            
+            return func;
+        }
+
+        public static DataTable fetch_all()
+        {
+            string consulta = $"SELECT * FROM FUNCIONARIOS;";
+            return Banco.consultar(consulta);
+        }
+
     }
 
-    internal class Produtos
+    public class Produtos
     {
         private int id { get; set; }
         private string nome { get; set; }
@@ -218,7 +287,7 @@ namespace crud_sqlite
         }
     }
 
-    internal class Clientes
+    public class Clientes
     {
         private int id { get; set; }
         private string nome { get; set; }
@@ -264,7 +333,7 @@ namespace crud_sqlite
         }
     }
 
-    internal class Pagamentos
+    public class Pagamentos
     {
         private int id { get; set; }
         private float valor { get; set; }
@@ -312,7 +381,7 @@ namespace crud_sqlite
         }
     }
 
-    internal class Carrinhos
+    public class Carrinhos
     {
         private int id { get; set; }
         private int cliente_id { get; set; }
@@ -355,7 +424,7 @@ namespace crud_sqlite
 
     }
 
-    internal class Compras
+    public class Compras
     {
         private int id { get; set; }
         private int cliente_id { get; set; }
@@ -398,10 +467,12 @@ namespace crud_sqlite
 
     }
 
-    internal class Pedidos
+    public class Pedidos
     {
         private int id { get; set; }
-        private int cliente_id { get; set; }
+        private int produto_id { get; set; }
+        private int carrinho_id { get; set; }
+        private int compra_id { get; set; }
 
         public Pedidos(int id, int produto_id, int carrinho_id, int compra_id)
         {

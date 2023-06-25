@@ -53,6 +53,7 @@
             this.button_funcionarios.TabIndex = 1;
             this.button_funcionarios.Text = "Funcionarios";
             this.button_funcionarios.UseVisualStyleBackColor = true;
+            this.button_funcionarios.Click += new System.EventHandler(this.button_funcionarios_Click);
             // 
             // button_produtos
             // 
@@ -95,14 +96,14 @@
             // encerrarSessãoToolStripMenuItem
             // 
             this.encerrarSessãoToolStripMenuItem.Name = "encerrarSessãoToolStripMenuItem";
-            this.encerrarSessãoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.encerrarSessãoToolStripMenuItem.Size = new System.Drawing.Size(195, 26);
             this.encerrarSessãoToolStripMenuItem.Text = "Encerrar Sessão";
             this.encerrarSessãoToolStripMenuItem.Click += new System.EventHandler(this.encerrarSessãoToolStripMenuItem_Click);
             // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(195, 26);
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 

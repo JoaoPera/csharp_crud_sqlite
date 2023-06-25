@@ -12,11 +12,23 @@ namespace crud_sqlite
 {
     public partial class Form_principal : Form
     {
+
+        public Funcionarios funcionario_da_sessao = null;
         Form1 form_login = null;
+
+
+
+        //public Funcionarios get_funcionario_da_sessao() {
+        //    return this.funcionario_da_sessao;        
+        //}
+
+
+
         public Form_principal(Form1 form_login)
         {
             InitializeComponent();
             this.form_login = form_login;
+            this.funcionario_da_sessao = form_login.func;
             form_login.Visible = false;
         }
 
@@ -46,6 +58,12 @@ namespace crud_sqlite
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button_funcionarios_Click(object sender, EventArgs e)
+        {
+            Form_funcionarios form_funcionarios= new Form_funcionarios(this);
+            form_funcionarios.ShowDialog();
         }
     }
 }

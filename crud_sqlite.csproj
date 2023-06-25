@@ -89,6 +89,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_funcionarios.resx">
+      <DependentUpon>Form_funcionarios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_principal.resx">
       <DependentUpon>Form_principal.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,6 +105,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Banco.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
