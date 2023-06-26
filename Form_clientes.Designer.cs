@@ -41,6 +41,10 @@
             this.label_telefone = new System.Windows.Forms.Label();
             this.label_nome = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label_paginas = new System.Windows.Forms.Label();
+            this.bt_tabela_anterior = new System.Windows.Forms.Button();
+            this.bt_tabela_proximo = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tabela = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -52,20 +56,18 @@
             this.label_pq_telefone = new System.Windows.Forms.Label();
             this.label_pq_nome = new System.Windows.Forms.Label();
             this.bt_atualizar_tabela = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.bt_tabela_proximo = new System.Windows.Forms.Button();
-            this.bt_tabela_anterior = new System.Windows.Forms.Button();
-            this.label_paginas = new System.Windows.Forms.Label();
+            this.bt_carrinho = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabela)).BeginInit();
             this.panel3.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.bt_carrinho);
             this.panel1.Controls.Add(this.bt_excluir);
             this.panel1.Controls.Add(this.bt_editar);
             this.panel1.Controls.Add(this.bt_novo);
@@ -192,6 +194,47 @@
             this.panel2.Size = new System.Drawing.Size(1046, 593);
             this.panel2.TabIndex = 1;
             // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label_paginas);
+            this.panel5.Controls.Add(this.bt_tabela_anterior);
+            this.panel5.Controls.Add(this.bt_tabela_proximo);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(0, 550);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1046, 43);
+            this.panel5.TabIndex = 2;
+            // 
+            // label_paginas
+            // 
+            this.label_paginas.AutoSize = true;
+            this.label_paginas.Location = new System.Drawing.Point(213, 13);
+            this.label_paginas.Name = "label_paginas";
+            this.label_paginas.Size = new System.Drawing.Size(0, 16);
+            this.label_paginas.TabIndex = 15;
+            // 
+            // bt_tabela_anterior
+            // 
+            this.bt_tabela_anterior.Dock = System.Windows.Forms.DockStyle.Left;
+            this.bt_tabela_anterior.Location = new System.Drawing.Point(0, 0);
+            this.bt_tabela_anterior.Name = "bt_tabela_anterior";
+            this.bt_tabela_anterior.Size = new System.Drawing.Size(200, 43);
+            this.bt_tabela_anterior.TabIndex = 14;
+            this.bt_tabela_anterior.Text = "Ir para a página anterior";
+            this.bt_tabela_anterior.UseVisualStyleBackColor = true;
+            this.bt_tabela_anterior.Click += new System.EventHandler(this.bt_tabela_anterior_Click);
+            // 
+            // bt_tabela_proximo
+            // 
+            this.bt_tabela_proximo.Dock = System.Windows.Forms.DockStyle.Right;
+            this.bt_tabela_proximo.Location = new System.Drawing.Point(846, 0);
+            this.bt_tabela_proximo.Name = "bt_tabela_proximo";
+            this.bt_tabela_proximo.Size = new System.Drawing.Size(200, 43);
+            this.bt_tabela_proximo.TabIndex = 13;
+            this.bt_tabela_proximo.Text = "Ir para a próxima página";
+            this.bt_tabela_proximo.UseVisualStyleBackColor = true;
+            this.bt_tabela_proximo.Click += new System.EventHandler(this.bt_tabela_proximo_Click);
+            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.tabela);
@@ -304,46 +347,14 @@
             this.bt_atualizar_tabela.UseVisualStyleBackColor = true;
             this.bt_atualizar_tabela.Click += new System.EventHandler(this.bt_atualizar_tabela_Click);
             // 
-            // panel5
+            // bt_carrinho
             // 
-            this.panel5.Controls.Add(this.label_paginas);
-            this.panel5.Controls.Add(this.bt_tabela_anterior);
-            this.panel5.Controls.Add(this.bt_tabela_proximo);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 550);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1046, 43);
-            this.panel5.TabIndex = 2;
-            // 
-            // bt_tabela_proximo
-            // 
-            this.bt_tabela_proximo.Dock = System.Windows.Forms.DockStyle.Right;
-            this.bt_tabela_proximo.Location = new System.Drawing.Point(846, 0);
-            this.bt_tabela_proximo.Name = "bt_tabela_proximo";
-            this.bt_tabela_proximo.Size = new System.Drawing.Size(200, 43);
-            this.bt_tabela_proximo.TabIndex = 13;
-            this.bt_tabela_proximo.Text = "Ir para a próxima página";
-            this.bt_tabela_proximo.UseVisualStyleBackColor = true;
-            this.bt_tabela_proximo.Click += new System.EventHandler(this.bt_tabela_proximo_Click);
-            // 
-            // bt_tabela_anterior
-            // 
-            this.bt_tabela_anterior.Dock = System.Windows.Forms.DockStyle.Left;
-            this.bt_tabela_anterior.Location = new System.Drawing.Point(0, 0);
-            this.bt_tabela_anterior.Name = "bt_tabela_anterior";
-            this.bt_tabela_anterior.Size = new System.Drawing.Size(200, 43);
-            this.bt_tabela_anterior.TabIndex = 14;
-            this.bt_tabela_anterior.Text = "Ir para a página anterior";
-            this.bt_tabela_anterior.UseVisualStyleBackColor = true;
-            this.bt_tabela_anterior.Click += new System.EventHandler(this.bt_tabela_anterior_Click);
-            // 
-            // label_paginas
-            // 
-            this.label_paginas.AutoSize = true;
-            this.label_paginas.Location = new System.Drawing.Point(213, 13);
-            this.label_paginas.Name = "label_paginas";
-            this.label_paginas.Size = new System.Drawing.Size(0, 16);
-            this.label_paginas.TabIndex = 15;
+            this.bt_carrinho.Location = new System.Drawing.Point(12, 326);
+            this.bt_carrinho.Name = "bt_carrinho";
+            this.bt_carrinho.Size = new System.Drawing.Size(96, 48);
+            this.bt_carrinho.TabIndex = 13;
+            this.bt_carrinho.Text = "Realizar Pedido";
+            this.bt_carrinho.UseVisualStyleBackColor = true;
             // 
             // Form_clientes
             // 
@@ -359,12 +370,12 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabela)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -399,5 +410,6 @@
         private System.Windows.Forms.Button bt_tabela_anterior;
         private System.Windows.Forms.Button bt_tabela_proximo;
         private System.Windows.Forms.Label label_paginas;
+        private System.Windows.Forms.Button bt_carrinho;
     }
 }

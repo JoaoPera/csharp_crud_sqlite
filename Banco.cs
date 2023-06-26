@@ -244,10 +244,10 @@ namespace crud_sqlite
 
     public class Produtos
     {
-        private int id { get; set; }
-        private string nome { get; set; }
-        private float preco{ get; set; }
-        private string descricao{ get; set; }
+        public int id { get; set; }
+        public string nome { get; set; }
+        public float preco{ get; set; }
+        public string descricao{ get; set; }
         
         public Produtos(int id, string nome, float preco, string descricao)
         {
@@ -257,15 +257,23 @@ namespace crud_sqlite
             this.descricao = descricao;
         }
 
-        public void insert()
+        public static void insert(string _nome, float _preco, string _descricao)
         {
-            string consulta = $"INSERT INTO PRODUTOS (produto_nome, produto_preco, produto_descricao) VALUES (\"{this.nome}\", {this.preco}, \"{this.descricao}\");";
+            string consulta = $"INSERT INTO PRODUTOS (produto_nome, produto_preco, produto_descricao) VALUES (\"{_nome}\", {_preco}, \"{_descricao}\");";
             Banco.query_sem_retorno(consulta);
         }
 
-        public void update()
+        public static void insert(string _nome, string p, string _descricao)
         {
-            string consulta = $"UPDATE PRODUTOS SET produto_nome = \"{this.nome}\", produto_preco = {this.preco}, produto_descricao = \"{this.descricao}\") WHERE produto_id = {this.id};";
+            float _preco = Convert.ToSingle(p);
+            string consulta = $"INSERT INTO PRODUTOS (produto_nome, produto_preco, produto_descricao) VALUES (\"{_nome}\", {_preco}, \"{_descricao}\");";
+            Banco.query_sem_retorno(consulta);
+        }
+
+        public void update(string _nome, string p, string _descricao)
+        {
+            float _preco = Convert.ToSingle(p);
+            string consulta = $"UPDATE PRODUTOS SET produto_nome = \"{_nome}\", produto_preco = {_preco}, produto_descricao = \"{_descricao}\") WHERE produto_id = {this.id};";
             Banco.query_sem_retorno(consulta);
         }
 
@@ -281,7 +289,7 @@ namespace crud_sqlite
             return Banco.consultar(consulta);
         }
 
-        public DataTable fetch_all(int pk)
+        public static DataTable fetch_all()
         {
             string consulta = $"SELECT * FROM PRODUTOS;";
             return Banco.consultar(consulta);
@@ -471,7 +479,7 @@ namespace crud_sqlite
             return Banco.consultar(consulta);
         }
 
-        public DataTable fetch_all(int pk)
+        public DataTable fetch_all()
         {
             string consulta = $"SELECT * FROM PAGAMENTOS;";
             return Banco.consultar(consulta);

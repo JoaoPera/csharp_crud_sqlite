@@ -35,6 +35,7 @@ namespace crud_sqlite
             bt_editar.Visible = false;
             bt_excluir.Visible = false;
             bt_cancelar.Visible = false;
+            bt_carrinho.Visible = false;
             bt_gravar.Visible = false;
             textBox_nome.ReadOnly = true;
             textBox_telefone.ReadOnly = true;
@@ -83,6 +84,12 @@ namespace crud_sqlite
 
         private void bt_atualizar_tabela_Click(object sender, EventArgs e)
         {
+            bt_carrinho.Visible = false;
+            bt_editar.Visible = false;
+            bt_excluir.Visible = false;
+            textBox_nome.Text = String.Empty;
+            textBox_telefone.Text = String.Empty;
+            textBox_endereco.Text = String.Empty;
             atualizar_tabela();
         }
 
@@ -110,6 +117,7 @@ namespace crud_sqlite
                     textBox_endereco.Text = endereco;
                     bt_editar.Visible = true;
                     bt_excluir.Visible = true;
+                    bt_carrinho.Visible = true;
                 }
             }
             catch ( Exception err)
@@ -131,6 +139,7 @@ namespace crud_sqlite
                 textBox_nome.ReadOnly = true;
                 textBox_telefone.ReadOnly = true;
                 textBox_endereco.ReadOnly = true;
+                bt_carrinho.Visible = false;
                 textBox_nome.Text = String.Empty;
                 textBox_telefone.Text = String.Empty;
                 textBox_endereco.Text = String.Empty;
@@ -154,19 +163,25 @@ namespace crud_sqlite
             bt_excluir.Visible = false;
             bt_cancelar.Visible =  true ;
             bt_gravar.Visible = true;
+            bt_carrinho.Visible = false;
         }
 
         private void bt_novo_Click(object sender, EventArgs e)
         {
             operacao = insert;
-            textBox_nome.ReadOnly = false;
+            textBox_nome.ReadOnly = false; 
             textBox_telefone.ReadOnly = false;
             textBox_endereco.ReadOnly = false;
+            textBox_nome.Text = String.Empty;
+            textBox_telefone.Text = String.Empty;
+            textBox_endereco.Text = String.Empty;
+            textBox_nome.Focus();
             bt_novo.Visible = false;
             bt_editar.Visible = false;
             bt_excluir.Visible = false;
             bt_cancelar.Visible = true;
             bt_gravar.Visible = true;
+            bt_carrinho.Visible = false;
 
         }
 
@@ -180,16 +195,26 @@ namespace crud_sqlite
             bt_excluir.Visible = false;
             bt_cancelar.Visible = false;
             bt_gravar.Visible = false;
+            textBox_nome.Text = String.Empty;
+            textBox_telefone.Text = String.Empty;
+            textBox_endereco.Text = String.Empty;
         }
 
         private void bt_gravar_Click(object sender, EventArgs e)
         {
 
             if (operacao == insert)
-            {   
-                Clientes.insert(textBox_nome.Text, textBox_telefone.Text, textBox_endereco.Text);
-                atualizar_tabela();
-                cliente = null;
+            {
+                if (textBox_nome.Text.Length > 0)
+                {
+                    Clientes.insert(textBox_nome.Text, textBox_telefone.Text, textBox_endereco.Text);
+                    atualizar_tabela();
+                    cliente = null;
+                }
+                else
+                {
+                    MessageBox.Show("não é possivel gravar um cliente com o campo nome vazio");
+                }
             }
 
             if (operacao == update)
@@ -212,12 +237,14 @@ namespace crud_sqlite
 
             bt_cancelar.Visible = false;
             bt_gravar.Visible = false;
+            bt_carrinho.Visible = false;
 
             operacao = string.Empty;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            bt_carrinho.Visible = false;
             string pq_nome = textBox_pq_nome.Text;
             string pq_telefone = textBox_pq_telefone.Text;
             string pq_endereco = textBox_pq_endereco.Text;

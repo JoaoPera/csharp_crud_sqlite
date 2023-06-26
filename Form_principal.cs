@@ -71,5 +71,11 @@ namespace crud_sqlite
             Form_clientes form_funcionarios = new Form_clientes(this);
             form_funcionarios.ShowDialog();
         }
+
+        private void button_produtos_Click(object sender, EventArgs e)
+        {
+            Form_produtos form_produtos = new Form_produtos(this);
+            form_produtos.ShowDialog();
+        }
     }
 }

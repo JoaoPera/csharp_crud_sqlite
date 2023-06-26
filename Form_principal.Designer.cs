@@ -35,14 +35,12 @@
             this.programaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.encerrarSessãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button_clientes = new System.Windows.Forms.Button();
             this.panel_sidebar = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button_pagamentos = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel_sidebar.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_funcionarios
@@ -63,6 +61,7 @@
             this.button_produtos.TabIndex = 2;
             this.button_produtos.Text = "Produtos";
             this.button_produtos.UseVisualStyleBackColor = true;
+            this.button_produtos.Click += new System.EventHandler(this.button_produtos_Click);
             // 
             // button_compras
             // 
@@ -107,16 +106,6 @@
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView1.TabIndex = 5;
-            // 
             // button_clientes
             // 
             this.button_clientes.Location = new System.Drawing.Point(3, 3);
@@ -129,6 +118,7 @@
             // 
             // panel_sidebar
             // 
+            this.panel_sidebar.Controls.Add(this.button_pagamentos);
             this.panel_sidebar.Controls.Add(this.button_clientes);
             this.panel_sidebar.Controls.Add(this.button_produtos);
             this.panel_sidebar.Controls.Add(this.button_funcionarios);
@@ -140,12 +130,20 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.dataGridView1);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(192, 31);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1030, 428);
             this.flowLayoutPanel1.TabIndex = 7;
             this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
+            // 
+            // button_pagamentos
+            // 
+            this.button_pagamentos.Location = new System.Drawing.Point(3, 155);
+            this.button_pagamentos.Name = "button_pagamentos";
+            this.button_pagamentos.Size = new System.Drawing.Size(168, 32);
+            this.button_pagamentos.TabIndex = 4;
+            this.button_pagamentos.Text = "Pagamentos";
+            this.button_pagamentos.UseVisualStyleBackColor = true;
             // 
             // Form_principal
             // 
@@ -161,9 +159,7 @@
             this.Load += new System.EventHandler(this.Form_principal_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel_sidebar.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,9 +173,9 @@
         private System.Windows.Forms.ToolStripMenuItem programaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem encerrarSessãoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button_clientes;
         private System.Windows.Forms.Panel panel_sidebar;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button button_pagamentos;
     }
 }
