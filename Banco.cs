@@ -455,15 +455,15 @@ namespace crud_sqlite
             this.compra_id = compra_id;
         }
 
-        public void insert()
+        public static void insert(float _valor, int _parcelas, int _tipo_de_pagamento_id, int _compra_id)
         {
-            string consulta = $"INSERT INTO PAGAMENTOS (pagamento_valor, pagamento_parcelas, pagamento_tipo_de_pagamento_id, pagamento_compra_id) VALUES ({this.valor}, {this.parcelas}, {this.tipo_de_pagamento_id}, {this.compra_id});";
+            string consulta = $"INSERT INTO PAGAMENTOS (pagamento_valor, pagamento_parcelas, pagamento_tipo_de_pagamento_id, pagamento_compra_id) VALUES ({_valor}, {_parcelas}, {_tipo_de_pagamento_id}, {_compra_id});";
             Banco.query_sem_retorno(consulta);
         }
 
-        public void update()
+        public void update(float _valor, int _parcelas, int _tipo_de_pagamento_id)
         {
-            string consulta = $"UPDATE PAGAMENTOS SET pagamento_valor = {this.valor}, pagamento_parcelas = {this.parcelas}, pagamento_tipo_de_pagamento_id = {this.tipo_de_pagamento_id}, pagamento_compra_id = {this.compra_id} WHERE pagamento_id = {this.id};";
+            string consulta = $"UPDATE PAGAMENTOS SET pagamento_valor = {_valor}, pagamento_parcelas = {_parcelas}, pagamento_tipo_de_pagamento_id = {_tipo_de_pagamento_id}, pagamento_compra_id = {this.compra_id} WHERE pagamento_id = {this.id};";
             Banco.query_sem_retorno(consulta);
         }
 
@@ -473,13 +473,13 @@ namespace crud_sqlite
             Banco.query_sem_retorno(consulta);
         }
 
-        public DataTable fetch(int pk)
+        public static DataTable fetch(int pk)
         {
             string consulta = $"SELECT * FROM PAGAMENTOS WHERE pagamento_id = {pk};";
             return Banco.consultar(consulta);
         }
 
-        public DataTable fetch_all()
+        public static DataTable fetch_all()
         {
             string consulta = $"SELECT * FROM PAGAMENTOS;";
             return Banco.consultar(consulta);
@@ -497,15 +497,15 @@ namespace crud_sqlite
             this.cliente_id = cliente_id;
         }
 
-        public void insert()
+        public static void insert(int _cliente_id)
         {
-            string consulta = $"INSERT INTO CARRINHOS (carrinho_cliente_id) VALUES ({this.cliente_id});";
+            string consulta = $"INSERT INTO CARRINHOS (carrinho_cliente_id) VALUES ({_cliente_id});";
             Banco.query_sem_retorno(consulta);
         }
 
-        public void update()
+        public void update(int _cliente_id)
         {
-            string consulta = $"UPDATE CARRINHOS SET carrinho_cliente_id = {this.cliente_id} WHERE carrinho_id = {this.id};";
+            string consulta = $"UPDATE CARRINHOS SET carrinho_cliente_id = {_cliente_id} WHERE carrinho_id = {this.id};";
             Banco.query_sem_retorno(consulta);
         }
 
@@ -515,13 +515,13 @@ namespace crud_sqlite
             Banco.query_sem_retorno(consulta);
         }
 
-        public DataTable fetch(int pk)
+        public static DataTable fetch(int pk)
         {
             string consulta = $"SELECT * FROM CARRINHOS WHERE carrinho_id = {pk};";
             return Banco.consultar(consulta);
         }
 
-        public DataTable fetch_all(int pk)
+        public static DataTable fetch_all()
         {
             string consulta = $"SELECT * FROM CARRINHOS;";
             return Banco.consultar(consulta);
@@ -540,15 +540,15 @@ namespace crud_sqlite
             this.cliente_id = cliente_id;
         }
 
-        public void insert()
+        public static void insert(int _cliente_id)
         {
-            string consulta = $"INSERT INTO COMPRAS (compras_cliente_id) VALUES ({this.cliente_id});";
+            string consulta = $"INSERT INTO COMPRAS (compras_cliente_id) VALUES ({_cliente_id});";
             Banco.query_sem_retorno(consulta);
         }
 
-        public void update()
+        public void update(int _cliente_id)
         {
-            string consulta = $"UPDATE COMPRAS SET compras_cliente_id = {this.cliente_id} WHERE compras_id = {this.id};";
+            string consulta = $"UPDATE COMPRAS SET compras_cliente_id = {_cliente_id} WHERE compras_id = {this.id};";
             Banco.query_sem_retorno(consulta);
         }
 
@@ -558,13 +558,13 @@ namespace crud_sqlite
             Banco.query_sem_retorno(consulta);
         }
 
-        public DataTable fetch(int pk)
+        public static DataTable fetch(int pk)
         {
             string consulta = $"SELECT * FROM COMPRAS WHERE compras_id = {pk};";
             return Banco.consultar(consulta);
         }
 
-        public DataTable fetch_all(int pk)
+        public static DataTable fetch_all()
         {
             string consulta = $"SELECT * FROM COMPRAS;";
             return Banco.consultar(consulta);
@@ -589,14 +589,14 @@ namespace crud_sqlite
 
 
         // lidar com carrinho_id e/ou compra_id == null. escrever "null" na query SQL
-        public void insert()
+        public static void insert(int _produto_id, int _carrinho_id, int _compra_id)
         {
-            string consulta = $"INSERT INTO PEDIDOS (pedido_produto_id, pedido_carrinho_id, pedido_compra_id) VALUES ({this.produto_id}, {this.carrinho_id}, {this.compra_id});";
+            string consulta = $"INSERT INTO PEDIDOS (pedido_produto_id, pedido_carrinho_id, pedido_compra_id) VALUES ({_produto_id}, {_carrinho_id}, {_compra_id});";
             Banco.query_sem_retorno(consulta);
         }
-        public void update()
+        public void update(int _produto_id, int _carrinho_id, int _compra_id)
         {
-            string consulta = $"UPDATE PEDIDOS SET pedido_produto_id = {this.produto_id}, pedido_carrinho_id = {this.carrinho_id}, pedido_compra_id = {this.compra_id};";
+            string consulta = $"UPDATE PEDIDOS SET pedido_produto_id = {_produto_id}, pedido_carrinho_id = {_carrinho_id}, pedido_compra_id = {_compra_id} WHERE pedido_id = {this.id};";
             Banco.query_sem_retorno(consulta);
         }
 
@@ -606,13 +606,13 @@ namespace crud_sqlite
             Banco.query_sem_retorno(consulta);
         }
 
-        public DataTable fetch(int pk)
+        public static DataTable fetch(int pk)
         {
             string consulta = $"SELECT * FROM PEDIDOS WHERE pedido_id = {pk};";
             return Banco.consultar(consulta);
         }
 
-        public DataTable fetch_all(int pk)
+        public static DataTable fetch_all()
         {
             string consulta = $"SELECT * FROM PEDIDOS;";
             return Banco.consultar(consulta);
